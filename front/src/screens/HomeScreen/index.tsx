@@ -9,7 +9,7 @@ import ErrorState from "./ErrorState";
 export type TStatusReportCitizen = "idle" | "loading" | "success" | "error";
 
 export default function HomeScreen() {
-  const [status, setStatus] = useState<TStatusReportCitizen>("error");
+  const [status, setStatus] = useState<TStatusReportCitizen>("idle");
 
   return (
     <main className="bg-gray-50 min-h-screen">
