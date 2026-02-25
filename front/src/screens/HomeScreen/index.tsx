@@ -25,7 +25,9 @@ export default function HomeScreen() {
               height={36}
             />
 
-            <h2 className="text-xl font-bold text-violet-500">Colab.gui326</h2>
+            <h2 className="md:text-lg text-md font-bold text-violet-500">
+              Colab.gui326
+            </h2>
           </div>
         </nav>
       </header>
