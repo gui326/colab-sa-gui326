@@ -7,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import databaseConfig from './config/database.config';
+import { ReportsModule } from './modules/reports.module';
 
 @Module({
   imports: [
@@ -32,9 +33,10 @@ import databaseConfig from './config/database.config';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
         autoLoadEntities: true,
-        synchronize: false,
+        synchronize: true,
       }),
     }),
+    ReportsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
