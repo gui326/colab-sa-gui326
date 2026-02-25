@@ -30,7 +30,7 @@ export default function Form({
     };
 
     api
-      .post("/citizen/reports", payload)
+      .post("/reports", payload)
       .then((response) => {
         setStatus("success");
       })

@@ -1,0 +1,20 @@
+# Dependencies
+node_modules
+.next
+
+# Environment
+.env
+.env.local
+
+# Local development
+tmp
+
+# Next.js specific
+pnpm-lock.yaml 
+yarn.lock 
+
+# Other files to ignore
+Dockerfile
+docker-compose*.yml
+.gitignore
+README.md
