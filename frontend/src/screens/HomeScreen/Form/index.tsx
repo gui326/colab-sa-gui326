@@ -1,13 +1,9 @@
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { reportSchema, ReportFormData } from "@/schemas/report.schema";
 
 import { TStatusReportCitizen } from "..";
 import api from "@/lib/api";
-
-type FormData = {
-  title: string;
-  description: string;
-  location: string;
-};
 
 export default function Form({
   setStatus,
@@ -17,10 +13,12 @@ export default function Form({
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<FormData>();
+    formState: { errors },
+  } = useForm<ReportFormData>({
+    resolver: zodResolver(reportSchema),
+  });
 
-  function onSubmit(data: FormData) {
+  function onSubmit(data: ReportFormData) {
     setStatus("loading");
 
     const payload = {
@@ -47,17 +45,7 @@ export default function Form({
       <label className="mb-1 text-gray-700 text-sm font-bold">Título</label>
 
       <input
-        {...register("title", {
-          required: "O título é obrigatório",
-          minLength: {
-            value: 5,
-            message: "O título deve ter pelo menos 5 caracteres",
-          },
-          maxLength: {
-            value: 100,
-            message: "O título deve ter no máximo 100 caracteres",
-          },
-        })}
+        {...register("title")}
         className="shadow text-sm appearance-none border-1 bg-gray-50 border-gray-200 rounded-[16px] w-full 
             py-3 px-4 text-gray-700 leading-tight hover:outline-gray-600 focus:outline-gray-300 focus:shadow-outline"
         placeholder="Ex: Balanço quebrado na praça central"
@@ -79,13 +67,7 @@ export default function Form({
       </label>
 
       <textarea
-        {...register("description", {
-          required: "A descrição é obrigatória",
-          minLength: {
-            value: 10,
-            message: "Descreva com pelo menos 10 caracteres",
-          },
-        })}
+        {...register("description")}
         className="shadow text-sm appearance-none border-1 bg-gray-50 border-gray-200 rounded-[16px] w-full 
             py-3 px-4 text-gray-700 leading-tight hover:outline-gray-600 focus:outline-gray-300 focus:shadow-outline min-h-[140px]"
         placeholder="Conte-nos os detalhes... é perigoso? Há quanto tempo isso está acontecendo? Já aconteceu algo parecido antes?"
@@ -102,9 +84,7 @@ export default function Form({
       </label>
 
       <input
-        {...register("location", {
-          required: "A localização é obrigatória",
-        })}
+        {...register("location")}
         className="shadow text-sm appearance-none border-1 bg-gray-50 border-gray-200 rounded-[16px] w-full 
             py-3 px-4 text-gray-700 leading-tight hover:outline-gray-600 focus:outline-gray-300 focus:shadow-outline"
         placeholder="Digite um endereço ou nome da rua"
