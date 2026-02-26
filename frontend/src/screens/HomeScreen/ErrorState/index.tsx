@@ -17,7 +17,7 @@ export default function ErrorState({
           alt="Error"
           width={120}
           height={200}
-          className="animate-pulse duration-700 delay-700"
+          className="animate-pulse"
         />
       </div>
 

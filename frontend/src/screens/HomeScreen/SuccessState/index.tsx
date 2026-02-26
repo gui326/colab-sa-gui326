@@ -11,7 +11,7 @@ export default function SuccessState() {
           alt="Success"
           width={120}
           height={200}
-          className="animate-pulse duration-700 delay-700"
+          className="animate-pulse"
         />
       </div>
 

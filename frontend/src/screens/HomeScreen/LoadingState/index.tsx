@@ -11,7 +11,7 @@ export default function LoadingState() {
           alt="Loading"
           width={120}
           height={200}
-          className="animate-spin duration-700 delay-700"
+          className="animate-spin"
         />
       </div>
 
