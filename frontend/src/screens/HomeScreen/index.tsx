@@ -34,11 +34,11 @@ export default function HomeScreen() {
 
       <section>
         <div className="max-w-2xl mx-auto px-4 py-[64px]">
-          <h1 className="text-gray-800 md:text-5xl text-2xl font-bold text-center">
+          <h1 className="text-gray-800 md:text-4xl text-2xl font-bold text-center">
             Vamos resolver juntos
           </h1>
 
-          <p className="text-gray-500 md:mt-[24px] mt-[12px] md:text-xl text-sm text-center">
+          <p className="text-gray-500 md:mt-[24px] mt-[12px] md:text-lg text-sm text-center">
             Viu algo errado no bairro? Conte para nós
             <br />e nós cuidaremos do resto!
           </p>
