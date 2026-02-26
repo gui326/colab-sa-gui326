@@ -1,4 +1,5 @@
-🚀 Como rodar o projeto localmente
+#### 🚀 Como rodar o projeto localmente
+
 1️⃣ Pré-requisitos
 
 Node.js >= 20
@@ -10,7 +11,7 @@ Docker e Docker Compose
 2️⃣ Clonar o repositório
 
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/gui326/colab-sa-gui326
 ```
 
 3️⃣ Configurar variáveis de ambiente do frontend e backend
@@ -37,7 +38,8 @@ http://localhost:3000
 
 ---
 
-🧪 Rodar testes
+##### Rodar testes
+
 Testes unitários e integração
 
 ```bash
