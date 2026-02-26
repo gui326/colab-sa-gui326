@@ -1,11 +1,13 @@
+/// <reference types="jest" />
+
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { ReportsService } from './reports.service';
-import { CitizenReport } from './entities/citizen-report.entity';
-import { CitizenReportAiAnalysis } from './entities/citizen-report-ai-analysis.entity';
-import { GeminiService } from '../ai/gemini.service';
+import { CitizenReport } from './entities/report.entity';
+import { CitizenReportAiAnalysis } from './entities/reportAiAnalysis.entity';
+import { GeminiService } from '../../ai/gemini.service';
 
 describe('ReportsService', () => {
   let service: ReportsService;
@@ -52,3 +54,53 @@ describe('ReportsService', () => {
 
     jest.clearAllMocks();
   });
+
+  it('should save report even if AI fails', async () => {
+    const dto = {
+      title: 'Buraco na rua',
+      description: 'Grande buraco',
+      location: 'Centro',
+    };
+
+    const savedReport = { id: '1', ...dto };
+
+    mockReportRepository.save.mockResolvedValue(savedReport);
+    mockGeminiService.analyzeReport.mockRejectedValue(new Error('IA falhou'));
+
+    const result = await service.create(dto as any);
+
+    expect(reportRepository.save).toHaveBeenCalled();
+    expect(geminiService.analyzeReport).toHaveBeenCalled();
+    expect(aiRepository.save).not.toHaveBeenCalled();
+    expect(result).toEqual(savedReport);
+  });
+
+  it('should save AI analysis when AI succeeds', async () => {
+    const dto = {
+      title: 'Buraco na rua',
+      description: 'Grande buraco',
+      location: 'Centro',
+    };
+
+    const savedReport = { id: '1', ...dto };
+
+    const aiResponse = {
+      categoria: 'Via Pública',
+      prioridade: 'Média',
+      resumo_tecnico: 'Resumo técnico',
+    };
+
+    mockReportRepository.save.mockResolvedValue(savedReport);
+    mockGeminiService.analyzeReport.mockResolvedValue(aiResponse);
+    mockAiRepository.create.mockReturnValue(aiResponse);
+    mockAiRepository.save.mockResolvedValue(aiResponse);
+
+    const result = await service.create(dto as any);
+
+    expect(reportRepository.save).toHaveBeenCalled();
+    expect(geminiService.analyzeReport).toHaveBeenCalled();
+    expect(aiRepository.create).toHaveBeenCalled();
+    expect(aiRepository.save).toHaveBeenCalled();
+    expect(result).toEqual(savedReport);
+  });
+});

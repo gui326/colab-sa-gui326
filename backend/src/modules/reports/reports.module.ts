@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CitizenReport } from './entities/report.entity';
 import { ReportsService } from './reports.service';
 import { ReportsController } from './reports.controller';
-import { AiModule } from 'src/ai/ai.module';
+import { AiModule } from '../../ai/ai.module';
 import { CitizenReportAiAnalysis } from './entities/reportAiAnalysis.entity';
 
 @Module({

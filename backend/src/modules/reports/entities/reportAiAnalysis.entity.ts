@@ -20,7 +20,7 @@ export class CitizenReportAiAnalysis {
   category!: string;
 
   @Column({
-    type: 'enum',
+    type: 'simple-enum',
     enum: ReportPriorityEnum,
   })
   priority!: ReportPriorityEnum;

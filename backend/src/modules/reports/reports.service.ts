@@ -5,8 +5,8 @@ import { Repository } from 'typeorm';
 import { CitizenReport } from './entities/report.entity';
 import { CreateReportDto } from './dto/create-report.dto';
 import { CitizenReportAiAnalysis } from './entities/reportAiAnalysis.entity';
-import { GeminiService } from 'src/ai/gemini.service';
-import { validateEnum } from 'src/common/utils/enum-validator';
+import { GeminiService } from '../../ai/gemini.service';
+import { validateEnum } from '../../common/utils/enum-validator';
 import { ReportPriorityEnum } from './enums/report.enums';
 
 @Injectable()
