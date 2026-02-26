@@ -7,7 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import databaseConfig from './config/database.config';
-import { ReportsModule } from './modules/reports.module';
+import { ReportsModule } from './modules/reports/reports.module';
 
 @Module({
   imports: [

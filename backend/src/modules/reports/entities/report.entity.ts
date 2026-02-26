@@ -3,7 +3,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  OneToOne,
+  UpdateDateColumn,
 } from 'typeorm';
+
+import { CitizenReportAiAnalysis } from './reportAiAnalysis.entity';
 
 @Entity('citizen_reports')
 export class CitizenReport {
@@ -20,5 +24,11 @@ export class CitizenReport {
   location!: string;
 
   @CreateDateColumn()
-  createdAt!: Date;
+  created_at!: Date;
+
+  @UpdateDateColumn()
+  updated_at!: Date;
+
+  @OneToOne(() => CitizenReportAiAnalysis, (analysis) => analysis.report)
+  ai_analysis!: CitizenReportAiAnalysis;
 }
